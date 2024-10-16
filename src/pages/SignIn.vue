@@ -1,31 +1,44 @@
 <script setup>
+import { ref } from "vue";
+
 defineOptions({
   name: "SignIn",
 });
+
+const isChecked = ref(false);
 </script>
 
 <template>
   <q-page class="bg-primary text-white flex flex-center">
-    <div class="wrapper column">
-      <p class="text-h1 heading-1 q-mb-xl">Sign In</p>
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+    <div class="column" style="width: 350px">
+      <div class="text-h1 heading-1 q-mb-xl text-center">Sign In</div>
+      <q-form
+        @submit="onSubmit"
+        @reset="onReset"
+        class="q-gutter-md flex flex-center"
+      >
         <q-input
-          standout="bg-secondary text-white"
-          v-model="text"
-          label="Email"
-          color="secondary"
-          class="full-width col-8 text-white bg-secondary"
+          standout
+          placeholder="Email"
+          bg-color="secondary"
+          class="full-width"
+          input-class="text-white"
         />
         <q-input
-          standout="bg-secondary text-white"
-          v-model="text"
-          label="Password"
+          standout
+          placeholder="Password"
           type="password"
-          color="secondary"
-          class="full-width col-8 text-white bg-secondary"
+          bg-color="secondary"
+          class="full-width"
+          input-class="text-white"
         />
-
-        <q-checkbox v-model="right" label="Remember me" color="secondary" />
+        <q-checkbox
+          indeterminate-value="maybe"
+          v-model="isChecked"
+          label="Remember me"
+          color="secondary"
+          keep-color
+        />
         <q-btn
           to="/"
           label="Login"
@@ -37,13 +50,3 @@ defineOptions({
     </div>
   </q-page>
 </template>
-
-<style scoped>
-.wrapper {
-  width: 350px;
-  padding: 0 10px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-</style>
