@@ -33,8 +33,21 @@ onMounted(() => {
         </q-btn>
       </div>
     </div>
-    <div class="row q-gutter-xl">
+    <div v-if="movies.length !== 0" class="row q-gutter-xl">
       <MovieCard :movies="movies" />
+    </div>
+    <div v-else class="flex flex-center">
+      <div class="column items-center">
+        <div class="text-h2 heading-2 q-mt-xl q-mb-md">
+          Your movie list is empty
+        </div>
+        <q-btn
+          class="col"
+          label="Add a new movie"
+          to="/create"
+          color="positive"
+        />
+      </div>
     </div>
   </q-page>
 </template>
