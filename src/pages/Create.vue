@@ -1,7 +1,50 @@
 <script setup>
+import { reactive } from "vue";
+import { useQuasar } from "quasar";
+import { useRouter } from "vue-router";
+
+const $q = useQuasar();
+const router = useRouter();
+
 defineOptions({
   name: "Create",
 });
+
+const formInput = {
+  name: "",
+  attachment: null,
+  year: "",
+};
+
+const form = reactive({ ...formInput });
+
+const handleSubmit = async () => {
+  try {
+    await fetch(process.env.API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([{ ...form }]),
+    });
+
+    $q.notify({
+      position: "top",
+      message: "New movie just been added!",
+      color: "positive",
+    });
+
+    form.name = "";
+    form.attachment = null;
+    form.year = "";
+
+    setTimeout(() => {
+      router.push("/");
+    }, 3000);
+  } catch (error) {
+    console.error("Error submitting form:", error);
+  }
+};
 </script>
 
 <template>
@@ -11,12 +54,15 @@ defineOptions({
         <div class="column">
           <div class="text-h1 heading-1 q-mb-xl">Create a new movie</div>
           <div class="">
-            <q-form class="row q-col-gutter-x-xl">
+            <q-form
+              @submit.prevent="handleSubmit"
+              class="row q-col-gutter-x-xl"
+            >
               <div class="col-7">
                 <q-file
+                  v-model="form.attachment"
                   bg-color="secondary"
                   outlined
-                  v-model="model"
                   label="Drop an image here"
                 >
                   <template v-slot:prepend>
@@ -29,6 +75,7 @@ defineOptions({
                   <div class="column">
                     <q-input
                       standout
+                      v-model="form.name"
                       placeholder="Title"
                       bg-color="secondary"
                       class="full-width q-mb-lg"
@@ -36,6 +83,7 @@ defineOptions({
                     />
                     <q-input
                       standout
+                      v-model="form.year"
                       placeholder="Publishing year"
                       bg-color="secondary"
                       input-class="text-white"
