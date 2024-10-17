@@ -1,4 +1,5 @@
 <script setup>
+import Button from "src/components/Button.vue";
 import { ref } from "vue";
 
 defineOptions({
@@ -39,12 +40,14 @@ const isChecked = ref(false);
           color="secondary"
           keep-color
         />
-        <q-btn
-          to="/"
+        <Button
+          :no-caps="true"
+          :unelevated="true"
+          class="full-width"
           label="Login"
+          to="/"
           type="submit"
           color="positive"
-          class="full-width"
         />
       </q-form>
     </div>

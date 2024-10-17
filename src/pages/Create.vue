@@ -2,6 +2,7 @@
 import { reactive } from "vue";
 import { useQuasar } from "quasar";
 import { useRouter } from "vue-router";
+import Button from "src/components/Button.vue";
 
 const $q = useQuasar();
 const router = useRouter();
@@ -91,13 +92,11 @@ const handleSubmit = async () => {
                     />
                   </div>
                   <div class="row q-gutter-x-md">
-                    <q-btn
-                      class="col"
-                      style="color: white"
-                      outline
-                      label="Cancel"
-                    />
-                    <q-btn
+                    <Button class="col" color="white" outline label="Cancel" />
+
+                    <Button
+                      :unelevated="true"
+                      :no-caps="true"
                       class="col"
                       label="Submit"
                       type="submit"

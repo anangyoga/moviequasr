@@ -1,4 +1,6 @@
 <script setup>
+import Button from "src/components/Button.vue";
+
 defineOptions({
   name: "Edit",
 });
@@ -43,13 +45,10 @@ defineOptions({
                     />
                   </div>
                   <div class="row q-gutter-x-md">
-                    <q-btn
-                      class="col"
-                      style="color: white"
-                      outline
-                      label="Cancel"
-                    />
-                    <q-btn
+                    <Button class="col" color="white" outline label="Cancel" />
+                    <Button
+                      :unelevated="true"
+                      :no-caps="true"
                       class="col"
                       label="Update"
                       type="submit"
