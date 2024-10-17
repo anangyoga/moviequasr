@@ -20,6 +20,16 @@ const formInput = {
 const form = reactive({ ...formInput });
 
 const handleSubmit = async () => {
+  if (!form.name || !form.attachment || !form.year) {
+    $q.notify({
+      position: "top",
+      message: "Please fill out all fields.",
+      color: "negative",
+    });
+
+    return;
+  }
+
   try {
     await fetch(process.env.API, {
       method: "POST",
