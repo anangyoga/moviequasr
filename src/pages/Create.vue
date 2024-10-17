@@ -19,6 +19,12 @@ const formInput = {
 
 const form = reactive({ ...formInput });
 
+const handleCancelSubmit = () => {
+  form.name = "";
+  form.attachment = null;
+  form.year = "";
+};
+
 const handleSubmit = async () => {
   if (!form.name || !form.attachment || !form.year) {
     $q.notify({
@@ -45,9 +51,7 @@ const handleSubmit = async () => {
       color: "positive",
     });
 
-    form.name = "";
-    form.attachment = null;
-    form.year = "";
+    handleCancelSubmit();
 
     setTimeout(() => {
       router.push("/");
@@ -102,7 +106,13 @@ const handleSubmit = async () => {
                     />
                   </div>
                   <div class="row q-gutter-x-md">
-                    <Button class="col" color="white" outline label="Cancel" />
+                    <Button
+                      @click="handleCancelSubmit"
+                      class="col"
+                      color="white"
+                      outline
+                      label="Cancel"
+                    />
 
                     <Button
                       :unelevated="true"
