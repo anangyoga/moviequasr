@@ -27,7 +27,7 @@ onMounted(async () => {
         My movies <q-btn outline round icon="add" to="/create" />
       </div>
       <div>
-        <q-btn flat size="13px">
+        <q-btn to="/signin" flat size="13px">
           <div>Logout</div>
           <q-icon right size="3em" name="logout" />
         </q-btn>

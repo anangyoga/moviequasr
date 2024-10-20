@@ -109,7 +109,13 @@ onMounted(async () => {
                     />
                   </div>
                   <div class="row q-gutter-x-md">
-                    <Button class="col" color="white" outline label="Cancel" />
+                    <Button
+                      to="/"
+                      class="col"
+                      color="white"
+                      outline
+                      label="Cancel"
+                    />
                     <Button
                       :unelevated="true"
                       :no-caps="true"
