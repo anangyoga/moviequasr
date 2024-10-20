@@ -15,8 +15,8 @@ const getData = async () => {
   movies.value = data.data;
 };
 
-onMounted(() => {
-  getData();
+onMounted(async () => {
+  await getData();
 });
 </script>
 
